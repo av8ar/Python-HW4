@@ -4,21 +4,25 @@ import random
 class IPAddressConverter:
    
     #converts number to its equivalent IP Address
+    @staticmethod
     def numToIpAddress(num):
         address = ''
+        if num == 0 and address == '': 
+            return '0.0.0.0'
         while num > 0:
-            address = str(num % 256) + '.' + address
+            address = str(num mod 256) + '.' + address
             num /= 256
         return address
 
     #converts ipAddress to its equivalent number form
+    @staticmethod
     def ipAddressToNum(address):
         num = 0
         exp = 3
         intList = address.split('.')
         for i in intList:
-            num += i * (256 ** exp)
-            exp -= 1
+            num += int(i) * (256 ** exp)
+            exp -= 1   
         return num
 
 #Generates key, encrypts, decrypts messages
@@ -71,7 +75,7 @@ def main():
 
     print(address1, '=', converter.ipAddressToNum(address1))
     print(num1, '=', converter.numToIpAddress(num1))
-    print(address2, '=', converter.numToIpAddress(address2))
+    print(address2, '=', converter.ipAddressToNum(address2))
     print(num2, '=', converter.numToIpAddress(num2))
 
 #Executes main method
