@@ -7,11 +7,16 @@ class IPAddressConverter:
     @staticmethod
     def numToIpAddress(num):
         address = ''
+        counter = 0
         if num == 0 and address == '': 
             return '0.0.0.0'
         while num > 0:
-            address = str(num mod 256) + '.' + address
-            num /= 256
+            if counter == 0:
+                address = str(num%256)
+            else:
+                address = str(num%256) + '.' + address
+            num = int(num/256)
+            counter += 1
         return address
 
     #converts ipAddress to its equivalent number form
@@ -68,15 +73,16 @@ class MonoAlphabeticCipher:
 def main():
     print('Hello World')
     converter = IPAddressConverter()
+    cipher = MonoAlphabeticCipher()
     address1 = '127.0.0.1'
     num1 = 2130706433
     address2 = '0.0.0.0'
     num2 = 0
-
     print(address1, '=', converter.ipAddressToNum(address1))
     print(num1, '=', converter.numToIpAddress(num1))
     print(address2, '=', converter.ipAddressToNum(address2))
     print(num2, '=', converter.numToIpAddress(num2))
+    
 
 #Executes main method
 if __name__ == '__main__':
