@@ -64,5 +64,5 @@ def main():
     print(num1, '=', converter.numToIpAddress(num1))
 
 
-if __name__ == "main":
+if __name__ == '__main__':
     main()
