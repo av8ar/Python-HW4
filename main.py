@@ -44,7 +44,6 @@ class MonoAlphabeticCipher:
         self.key = self.generateKey()
 
     #Generates key
-    
     def generateKey(self):
         key = ''
         for i in range(62):
@@ -79,14 +78,15 @@ def main():
     address2 = '0.0.0.0'
     num2 = 0
     msg = 'Pyth0n15Super10r'
+    encrypted_msg = cipher.encrypt(msg)
     print(address1, '=', converter.ipAddressToNum(address1))
     print(num1, '=', converter.numToIpAddress(num1))
     print(address2, '=', converter.ipAddressToNum(address2))
     print(num2, '=', converter.numToIpAddress(num2))
     print('key1:', cipher.key)
     print('msg:', msg)
-    print('encrypted msg:', cipher.encrypt(msg))
-    print('decrypted msg:', cipher.decrypt(msg))
+    print('encrypted msg:', encrypted_msg)
+    print('decrypted msg:', cipher.decrypt(encrypted_msg))
 
 #Executes main method
 if __name__ == '__main__':
