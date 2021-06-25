@@ -33,8 +33,9 @@ class IPAddressConverter:
 #Generates key, encrypts, decrypts messages
 class MonoAlphabeticCipher:
 
-    upper_alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    
     lower_alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    upper_alphabet = lower_alphabet.upper()
     digits = '0123456789'
     char_str = upper_alphabet + lower_alphabet + digits
 
@@ -43,30 +44,29 @@ class MonoAlphabeticCipher:
         self.key = self.generateKey()
 
     #Generates key
+    
     def generateKey(self):
-        global char_str
         key = ''
         for i in range(62):
-            c = char_str[random.randint(0, 61)]
-            if c not in key:
-                key.append(c)
+            c = self.char_str[random.randint(0, 61)]
+            while c in key:
+                c = self.char_str[random.randint(0, 61)]
+            key += c
         self.key = key
         return key
     
     #Encrypts message
     def encrypt(self, msg):
-        global char_str
         encrypted_msg = ''
         for c in msg:
-            encrypted_msg.append(self.key[char_str.index(c)])
+            encrypted_msg += self.key[self.char_str.index(c)]
         return encrypted_msg
 
     #Decrypts encrypted message
     def decrypt(self, encrypted_msg):
-        global char_str
         decrypted_msg = ''
         for c in encrypted_msg:
-            decrypted_msg.append(char_str[self.key.index(c)])
+            decrypted_msg += self.char_str[self.key.index(c)]
         return decrypted_msg
 
 #Main function
@@ -78,11 +78,15 @@ def main():
     num1 = 2130706433
     address2 = '0.0.0.0'
     num2 = 0
+    msg = 'Pyth0n15Super10r'
     print(address1, '=', converter.ipAddressToNum(address1))
     print(num1, '=', converter.numToIpAddress(num1))
     print(address2, '=', converter.ipAddressToNum(address2))
     print(num2, '=', converter.numToIpAddress(num2))
-    
+    print('key1:', cipher.key)
+    print('msg:', msg)
+    print('encrypted msg:', cipher.encrypt(msg))
+    print('decrypted msg:', cipher.decrypt(msg))
 
 #Executes main method
 if __name__ == '__main__':
