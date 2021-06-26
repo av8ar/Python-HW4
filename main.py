@@ -33,8 +33,7 @@ class IPAddressConverter:
 
 class IPAddressConverterTest(unittest.TestCase):
     
-        
-    def test_IPAddressConverterTest(self):
+    def test_IPAddressConverterTest(self):        
         self.assertEqual(IPAddressConverter.ipAddressToNum('127.0.0.1'), 2130706433)
         self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.0.0'), 0)
         self.assertEqual(IPAddressConverter.ipAddressToNum('101.0.78.13'), 1694518797)
@@ -45,14 +44,13 @@ class IPAddressConverterTest(unittest.TestCase):
         self.assertEqual(IPAddressConverter.ipAddressToNum('220.36.180.140'), 3693393036)
         self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.250.4'), 64004)
         self.assertEqual(IPAddressConverter.ipAddressToNum('9.207.201.0'), 164612352)
-        print('10 test cases succesfully ran for ipAddressToNum')
+        
         
 
 
 #Generates key, encrypts, decrypts messages
 class MonoAlphabeticCipher:
 
-    
     lower_alphabet = 'abcdefghijklmnopqrstuvwxyz'
     upper_alphabet = lower_alphabet.upper()
     digits = '0123456789'
@@ -87,6 +85,25 @@ class MonoAlphabeticCipher:
             decrypted_msg += self.char_str[self.key.index(c)]
         return decrypted_msg
 
+class MonoalphabeticCipherTest(unittest.TestCase):
+    def test_MonoalphabeticCipherTest(self):
+        c = MonoAlphabeticCipher()
+        keyList = []
+        encList = []
+        decList = []
+        msgList = ['Mario123', 'CelSius23', 'COVID19', 'Murica99', 'StephCurry22', 'dreamD4', '420blazeit', 'amogus1', 'todoslosdias', 'stevesuptic', 'McKillaGorilla', 'mainpy', 'korewapendesu', 'KFC', 'kurama', 'story1', '909485', '01racecar10', 'parabellum', '8bit', 'CPU', 'ValoStatsFails', 'StatenIsland', 'disconnect', 'kettle7', '70and7d', 'YouTube', 'ChesterAruthru', 'geometry3', 'jujutsu']
+        for i in range(30):
+            k = c.generateKey()
+            e = c.encrypt(msgList[i])
+            d = c.decrypt(e)
+            keyList.append(k)
+            encList.append(e)
+            decList.append(d)
+        for i in range(30):
+            c.key = keyList[i]
+            self.assertEqual(c.encrypt(msgList[i]), encList[i])
+            self.assertEqual(c.decrypt(encList[i]), decList[i])
+
 #Main function
 def main():
     print('Hello World')
@@ -109,4 +126,5 @@ def main():
 
 #Executes main method
 if __name__ == '__main__':
-    unittest.main()
+   #unittest.main(verbosity = 2)
+   main()
