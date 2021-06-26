@@ -1,4 +1,5 @@
 import random
+import unittest
 
 #Does the conversions
 class IPAddressConverter:
@@ -29,6 +30,24 @@ class IPAddressConverter:
             num += int(i) * (256 ** exp)
             exp -= 1   
         return num
+
+class IPAddressConverterTest(unittest.TestCase):
+    
+        
+    def test_IPAddressConverterTest(self):
+        self.assertEqual(IPAddressConverter.ipAddressToNum('127.0.0.1'), 2130706433)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.0.0'), 0)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('101.0.78.13'), 1694518797)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('9.9.9.10'), 151587082)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('10.6.8.130'), 168167554)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('255.255.255.255'), 4294967295)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('6.6.6.6'), 101058054)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('220.36.180.140'), 3693393036)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.250.4'), 64004)
+        self.assertEqual(IPAddressConverter.ipAddressToNum('9.207.201.0'), 164612352)
+        print('10 test cases succesfully ran for ipAddressToNum')
+        
+
 
 #Generates key, encrypts, decrypts messages
 class MonoAlphabeticCipher:
@@ -90,4 +109,4 @@ def main():
 
 #Executes main method
 if __name__ == '__main__':
-    main()
+    unittest.main()
