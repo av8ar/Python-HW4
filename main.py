@@ -11,7 +11,7 @@ class IPAddressConverter:
         counter = 0
         if num == 0 and address == '': 
             return '0.0.0.0'
-        while num > 0:
+        while num >= 0 and counter < 4:
             if counter == 0:
                 address = str(num%256)
             else:
@@ -33,21 +33,18 @@ class IPAddressConverter:
 
 class IPAddressConverterTest(unittest.TestCase):
     
-    def test_IPAddressConverterTest(self):        
-        self.assertEqual(IPAddressConverter.ipAddressToNum('127.0.0.1'), 2130706433)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.0.0'), 0)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('101.0.78.13'), 1694518797)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('9.9.9.10'), 151587082)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('10.6.8.130'), 168167554)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('255.255.255.255'), 4294967295)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('6.6.6.6'), 101058054)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('220.36.180.140'), 3693393036)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.250.4'), 64004)
-        self.assertEqual(IPAddressConverter.ipAddressToNum('9.207.201.0'), 164612352)
+    def test_IPAddressConverterTest(self):  
+        addressList = ['127.0.0.1','0.0.0.0','101.0.78.13','9.9.9.10','10.6.8.130','255.255.255.255','6.6.6.6','220.36.180.140','0.0.250.4','9.207.201.0'] 
+        numList = [2130706433,0,1694518797,151587082,168167554,4294967295,101058054,3693393036,64004,164612352]  
+        print('IPAddressConverterTests for ipAddressToNum and numToIpAddress:\n') 
+        for i in range(10):
+            self.assertEqual(IPAddressConverter.ipAddressToNum(addressList[i]), numList[i])
+            print('\nipAddressToNumTest' + str(i+1), '\n' + addressList[i], '=', numList[i])
+            self.assertEqual(IPAddressConverter.numToIpAddress(numList[i]),addressList[i])
+            print('\nnumToIpAddressTest' + str(i+1), '\n' + numList[i], '=', addressList[i]
         
-
 #Generates key, encrypts, decrypts messages
-class MonoAlphabeticCipher:
+class MonoalphabeticCipher:
 
     lower_alphabet = 'abcdefghijklmnopqrstuvwxyz'
     upper_alphabet = lower_alphabet.upper()
@@ -85,24 +82,26 @@ class MonoAlphabeticCipher:
 
 class MonoalphabeticCipherTest(unittest.TestCase):
     def test_MonoalphabeticCipherTest(self):
-        c = MonoAlphabeticCipher()
+        c = MonoalphabeticCipher()
         keyList = []
         encList = []
         decList = []
-        msgList = ['Mario123', 'CelSius23', 'COVID19', 'Murica99', 'StephCurry22', 'dreamD4', '420blazeit', 'amogus1', 'todoslosdias', 'stevesuptic', 'McKillaGorilla', 'mainpy', 'korewapendesu', 'KFC', 'kurama', 'story1', '909485', '01racecar10', 'parabellum', '8bit', 'CPU', 'ValoStatsFails', 'StatenIsland', 'disconnect', 'kettle7', '70and7d', 'YouTube', 'ChesterAruthru', 'geometry38', 'jujutsu']
-        for i in range(30):
+        msgList = ['Mario123', 'CelSius23', 'COVID19', 'Murica99', 'StephCurry22', 'dreamD4', '420blazeit', 'amogus1', 'todoslosdias', 'stevesuptic']
+        for i in range(10):
             k = c.generateKey()
             e = c.encrypt(msgList[i])
             d = c.decrypt(e)
             keyList.append(k)
             encList.append(e)
             decList.append(d)
-        for i in range(30):
+        for i in range(10):
             c.key = keyList[i]
             self.assertEqual(c.encrypt(msgList[i]), encList[i])
             self.assertEqual(c.decrypt(encList[i]), decList[i])
-        for i in range(30):
+        print('\n\nCipherTests for generateKey, encrypt, and decrypt methods:')
+        for i in range(10):
             print('\nCipherTest' + str(i+1), '\nkey:',keyList[i], '\nmsg:', msgList[i], '\nencrypted msg:', encList[i], '\ndecrypted msg:', decList[i], '\n')
+        
 
 #Main function
 def main():
