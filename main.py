@@ -39,9 +39,9 @@ class IPAddressConverterTest(unittest.TestCase):
         print('IPAddressConverterTests for ipAddressToNum and numToIpAddress:\n') 
         for i in range(10):
             self.assertEqual(IPAddressConverter.ipAddressToNum(addressList[i]), numList[i])
-            print('\nipAddressToNumTest' + str(i+1), '\n' + addressList[i], '=', numList[i])
+            print('\nipAddressToNumTest' + str(i+1), '\n' + addressList[i], '=', str(numList[i]))
             self.assertEqual(IPAddressConverter.numToIpAddress(numList[i]),addressList[i])
-            print('\nnumToIpAddressTest' + str(i+1), '\n' + numList[i], '=', addressList[i])    
+            print('\nnumToIpAddressTest' + str(i+1), '\n' + str(numList[i]), '=', addressList[i])    
 
 #Generates key, encrypts, decrypts messages
 class MonoalphabeticCipher:
@@ -107,7 +107,7 @@ class MonoalphabeticCipherTest(unittest.TestCase):
 def main():
     print('Hello World')
     converter = IPAddressConverter()
-    cipher = MonoAlphabeticCipher()
+    cipher = MonoalphabeticCipher()
     address1 = '127.0.0.1'
     num1 = 2130706433
     address2 = '0.0.0.0'
