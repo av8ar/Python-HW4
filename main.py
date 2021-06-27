@@ -33,7 +33,8 @@ class IPAddressConverter:
 
 class IPAddressConverterTest(unittest.TestCase):
     
-    def test_IPAddressConverterTest(self):  
+    def test_IPAddressConverterTest(self):
+        '''  
         addressList = ['127.0.0.1','0.0.0.0','101.0.78.13','9.9.9.10','10.6.8.130','255.255.255.255','6.6.6.6','220.36.180.140','0.0.250.4','9.207.201.0'] 
         numList = [2130706433,0,1694518797,151587082,168167554,4294967295,101058054,3693393036,64004,164612352]  
         print('IPAddressConverterTests for ipAddressToNum and numToIpAddress:\n') 
@@ -42,6 +43,26 @@ class IPAddressConverterTest(unittest.TestCase):
             print('\nipAddressToNumTest' + str(i+1), '\n' + addressList[i], '=', numList[i])
             self.assertEqual(IPAddressConverter.numToIpAddress(numList[i]),addressList[i])
             print('\nnumToIpAddressTest' + str(i+1), '\n' + numList[i], '=', addressList[i]
+            '''
+        self.assertEqual(IPAddressConverter.ipAddressToNum('127.0.0.1'), 2130706433)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.0.0'), 0)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('101.0.78.13'), 1694518797)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('9.9.9.10'), 151587082)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('10.6.8.130'), 168167554)self.assertEqual(IPAddressConverter.ipAddressToNum('255.255.255.255'), 4294967295)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('6.6.6.6'), 101058054)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('220.36.180.140'), 3693393036)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.250.4'), 64004)
+            self.assertEqual(IPAddressConverter.ipAddressToNum('9.207.201.0'), 164612352)
+            self.assertEqual(IPAddressConverter.numToIpAddress(2130706433), '127.0.0.1')
+            self.assertEqual(IPAddressConverter.numToIpAddress(0), '0.0.0.0')
+            self.assertEqual(IPAddressConverter.numToIpAddress(1694518797), '101.0.78.13')
+            self.assertEqual(IPAddressConverter.numToIpAddress(151587082), '9.9.9.10')
+            self.assertEqual(IPAddressConverter.numToIpAddress(168167554), '10.6.8.130')
+            self.assertEqual(IPAddressConverter.numToIpAddress(4294967295), '255.255.255.255')
+            self.assertEqual(IPAddressConverter.numToIpAddress(101058054), '6.6.6.6')
+            self.assertEqual(IPAddressConverter.numToIpAddress(3693393036), '220.36.180.140')
+            self.assertEqual(IPAddressConverter.numToIpAddress(64004), '0.0.250.4')
+            self.assertEqual(IPAddressConverter.numToIpAddress(164612352), '9.207.201.0')    
         
 #Generates key, encrypts, decrypts messages
 class MonoalphabeticCipher:
