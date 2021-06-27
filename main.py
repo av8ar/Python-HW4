@@ -45,8 +45,6 @@ class IPAddressConverterTest(unittest.TestCase):
         self.assertEqual(IPAddressConverter.ipAddressToNum('0.0.250.4'), 64004)
         self.assertEqual(IPAddressConverter.ipAddressToNum('9.207.201.0'), 164612352)
         
-        
-
 
 #Generates key, encrypts, decrypts messages
 class MonoAlphabeticCipher:
@@ -91,7 +89,7 @@ class MonoalphabeticCipherTest(unittest.TestCase):
         keyList = []
         encList = []
         decList = []
-        msgList = ['Mario123', 'CelSius23', 'COVID19', 'Murica99', 'StephCurry22', 'dreamD4', '420blazeit', 'amogus1', 'todoslosdias', 'stevesuptic', 'McKillaGorilla', 'mainpy', 'korewapendesu', 'KFC', 'kurama', 'story1', '909485', '01racecar10', 'parabellum', '8bit', 'CPU', 'ValoStatsFails', 'StatenIsland', 'disconnect', 'kettle7', '70and7d', 'YouTube', 'ChesterAruthru', 'geometry3', 'jujutsu']
+        msgList = ['Mario123', 'CelSius23', 'COVID19', 'Murica99', 'StephCurry22', 'dreamD4', '420blazeit', 'amogus1', 'todoslosdias', 'stevesuptic', 'McKillaGorilla', 'mainpy', 'korewapendesu', 'KFC', 'kurama', 'story1', '909485', '01racecar10', 'parabellum', '8bit', 'CPU', 'ValoStatsFails', 'StatenIsland', 'disconnect', 'kettle7', '70and7d', 'YouTube', 'ChesterAruthru', 'geometry38', 'jujutsu']
         for i in range(30):
             k = c.generateKey()
             e = c.encrypt(msgList[i])
@@ -126,5 +124,5 @@ def main():
 
 #Executes main method
 if __name__ == '__main__':
-   #unittest.main(verbosity = 2)
-   main()
+   unittest.main(verbosity = 2)
+   #main()
