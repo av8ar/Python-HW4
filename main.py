@@ -102,7 +102,7 @@ class MonoalphabeticCipherTest(unittest.TestCase):
             self.assertEqual(c.encrypt(msgList[i]), encList[i])
             self.assertEqual(c.decrypt(encList[i]), decList[i])
         for i in range(30):
-            print('CipherTest' + str(i+1), 'key:',keyList[i], '\nmsg:', msgList[i], '\nencrypted msg:', encList[i], '\ndecrypted msg:', decList[i], '\n\n')
+            print('\nCipherTest' + str(i+1), '\nkey:',keyList[i], '\nmsg:', msgList[i], '\nencrypted msg:', encList[i], '\ndecrypted msg:', decList[i], '\n')
 
 #Main function
 def main():
