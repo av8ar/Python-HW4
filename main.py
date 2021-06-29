@@ -81,8 +81,58 @@ class MonoalphabeticCipher:
         return decrypted_msg
 
 class MonoalphabeticCipherTest(unittest.TestCase):
+    #Checks if the elements of the string array are unique
+    def uniqueElements(self, string):
+        uniq = []
+        for i in range(62):
+            if(string[i] in uniq):
+                return False
+            else:
+                uniq.append(string[i])
+        return True
+
+    def test_GenerateKeyTest(self):
+        genObject = MonoalphabeticCipher()
+        keyArray = []
+        for i in range(10):
+            keyArray.append(genObject.generateKey())
+            self.assertEqual(len(keyArray[i]), 62)
+            self.assertEqual(self.uniqueElements(keyArray[i]), True)
+            print('\nkeyTest' + str(i+1) + ':', keyArray[i])
+
+    def test_EncryptTest(self):
+        eCipher = MonoalphabeticCipher()
+        key = '6tuXBdf3xmgMNblEYiJ5ZvVSOo0z1ayRH4LrQIqDnh9wKjA82cWFk7pCeUTGPs'
+        eCipher.key = key
+        msgs = ['Mario123', 'CelSius23', 'COVID19', 'Murica99', 'StephCurry22', 'dreamD4', '420blazeit', 'amogus1', 'todoslosdias', 'stevesuptic']
+        encryptArray = []
+        for i in range(10):
+            encryptArray.append(eCipher.encrypt(msgs[i]))
+            self.assertEqual(len(encryptArray[i]), len(msgs[i]))
+            print('\nencryptTest' + str(i+1) + ':', encryptArray[i])
+        
+    def test_DecryptedTest(self):
+        dCipher = MonoalphabeticCipher()
+        key = '6tuXBdf3xmgMNblEYiJ5ZvVSOo0z1ayRH4LrQIqDnh9wKjA82cWFk7pCeUTGPs'
+        dCipher.key = key 
+        decryptArray = []
+        for i in range(10):
+            decryptArray[i].append(dCipher.decrypt(self.encryptArray[i]))
+            self.assertEquals(decryptArray[i], self.msgs[i])
+            print('\ndecryptTest' + str(i+1) + ':', decryptArray[i])
+
+
+    
     def test_MonoalphabeticCipherTest(self):
         c = MonoalphabeticCipher()
+        '''
+        msg = 'Mario123'
+        k = c.generateKey()
+        e = c.encrypt(msg)
+        d = c.decrypt(e)
+        self.assertEquals(len(k), 62)
+        self.assertEquals(d, msg)
+        '''
         keyList = []
         encList = []
         decList = []
